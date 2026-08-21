@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings — SENTINEL-X</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><path d=%22M16 2L28 7v8c0 8-5 13-12 15C9 28 4 23 4 15V7L16 2z%22 fill=%22%234f7cff%22/></svg>">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div id="app-root"></div>
+
+<div id="page-slot" style="display:none">
+  <div class="page-head">
+    <div><h2>Settings</h2><p>Configure appearance, notifications, data, and security preferences</p></div>
+  </div>
+
+  <div class="settings-grid">
+    <nav class="settings-nav">
+      <a href="#sec-appearance" class="active">Appearance</a>
+      <a href="#sec-profile">Analyst Profile</a>
+      <a href="#sec-notifications">Notifications</a>
+      <a href="#sec-data">Data</a>
+      <a href="#sec-security">Security</a>
+    </nav>
+
+    <div>
+      <div class="panel settings-section" id="sec-appearance">
+        <div class="panel-head"><h3>Appearance</h3></div>
+        <div class="panel-body">
+          <div class="settings-row">
+            <div><div class="sr-label">Theme</div><div class="sr-desc">Choose the interface color scheme</div></div>
+            <div class="theme-pick">
+              <div class="theme-opt" data-theme="dark"><div class="swatch dark"></div>Dark</div>
+              <div class="theme-opt" data-theme="light"><div class="swatch light"></div>Light</div>
+            </div>
+          </div>
+          <div class="settings-row">
+            <div><div class="sr-label">Compact Mode</div><div class="sr-desc">Reduce header height and padding for denser layouts</div></div>
+            <label class="switch"><input type="checkbox" id="set-compact"><span class="track"></span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel settings-section" id="sec-profile">
+        <div class="panel-head"><h3>Analyst Profile</h3></div>
+        <div class="panel-body">
+          <div class="flex items-center gap-14" style="margin-bottom:18px;">
+            <div class="avatar" style="width:52px;height:52px;font-size:16px;">SA</div>
+            <div>
+              <div style="font-weight:700;font-size:14px;">S. Alvarez</div>
+              <div class="text-tertiary" style="font-size:11.5px;">Security Analyst · Tier 2 SOC</div>
+            </div>
+          </div>
+          <div class="info-list">
+            <div class="info-row"><span class="ir-k">Account Status</span><span class="ir-v"><span class="badge badge-ok">Active</span></span></div>
+            <div class="info-row"><span class="ir-k">Last Login</span><span class="ir-v" id="prof-last-login">—</span></div>
+            <div class="info-row"><span class="ir-k">Activity (7d)</span><span class="ir-v">142 actions logged</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel settings-section" id="sec-notifications">
+        <div class="panel-head"><h3>Notifications</h3></div>
+        <div class="panel-body">
+          <div class="settings-row"><div><div class="sr-label">Threat Alerts</div><div class="sr-desc">Notify on newly detected threat events</div></div><label class="switch"><input type="checkbox" id="set-alert-threat" checked><span class="track"></span></label></div>
+          <div class="settings-row"><div><div class="sr-label">Vulnerability Alerts</div><div class="sr-desc">Notify when new CVEs match monitored products</div></div><label class="switch"><input type="checkbox" id="set-alert-vuln" checked><span class="track"></span></label></div>
+          <div class="settings-row"><div><div class="sr-label">System Alerts</div><div class="sr-desc">Notify on data feed or API connectivity issues</div></div><label class="switch"><input type="checkbox" id="set-alert-system" checked><span class="track"></span></label></div>
+        </div>
+      </div>
+
+      <div class="panel settings-section" id="sec-data">
+        <div class="panel-head"><h3>Data</h3></div>
+        <div class="panel-body">
+          <div class="settings-row">
+            <div><div class="sr-label">Refresh Interval</div><div class="sr-desc">How often dashboards poll for updated data</div></div>
+            <select class="input filter-select" id="set-refresh" style="width:150px;">
+              <option value="15">15 seconds</option><option value="30">30 seconds</option>
+              <option value="60">1 minute</option><option value="300">5 minutes</option>
+            </select>
+          </div>
+          <div class="settings-row">
+            <div><div class="sr-label">API Status</div><div class="sr-desc">Live connectivity to configured intelligence providers</div></div>
+            <div id="api-status-list" class="flex-col gap-6" style="align-items:flex-end;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel settings-section" id="sec-security">
+        <div class="panel-head"><h3>Security</h3></div>
+        <div class="panel-body">
+          <div class="settings-row">
+            <div><div class="sr-label">Session Timeout</div><div class="sr-desc">Automatically sign out after inactivity</div></div>
+            <select class="input filter-select" id="set-session" style="width:150px;">
+              <option value="15">15 minutes</option><option value="30">30 minutes</option><option value="60">1 hour</option><option value="0">Never</option>
+            </select>
+          </div>
+          <div class="settings-row">
+            <div><div class="sr-label">Two-Factor Authentication</div><div class="sr-desc">Require a second factor when signing in</div></div>
+            <label class="switch"><input type="checkbox" id="set-2fa"><span class="track"></span></label>
+          </div>
+          <div id="twofa-panel" style="display:none;margin-top:6px;">
+            <div class="twofa-box">
+              <div class="qr-fake"></div>
+              <div>
+                <div style="font-weight:600;font-size:12.5px;margin-bottom:4px;">Scan with an authenticator app</div>
+                <div class="text-tertiary" style="font-size:11.5px;">This is a demonstration UI — no real secret is generated.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" id="settings-save">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+<script src="js/settings.js"></script>
+<script>
+  SXApp.mount({ title: 'Settings', crumbs: 'SENTINEL-X / Settings' });
+  SXSettings.init();
+</script>
+</body>
+</html>

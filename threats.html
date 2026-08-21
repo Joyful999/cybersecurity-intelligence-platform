@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Threat Intelligence — SENTINEL-X</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><path d=%22M16 2L28 7v8c0 8-5 13-12 15C9 28 4 23 4 15V7L16 2z%22 fill=%22%234f7cff%22/></svg>">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div id="app-root"></div>
+
+<div id="page-slot" style="display:none">
+  <div class="page-head">
+    <div>
+      <h2>Threat Intelligence</h2>
+      <p>Search and investigate threat events across monitored sources</p>
+    </div>
+    <div class="page-actions">
+      <span class="badge badge-neutral">DEMO DATASET</span>
+      <button class="btn" id="threats-export">Export CSV</button>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="filter-bar">
+      <div class="input-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input class="input" id="f-query" placeholder="Search by name, IP, or location…">
+      </div>
+      <select class="filter-select" id="f-category">
+        <option value="">All categories</option>
+        <option>Malware</option><option>Phishing</option><option>Botnet</option><option>DDoS</option>
+        <option>Brute Force</option><option>Exploit</option><option>Suspicious IP</option>
+        <option>Malicious Domain</option><option>Data Breach</option>
+      </select>
+      <select class="filter-select" id="f-severity">
+        <option value="">All severities</option>
+        <option value="critical">Critical</option><option value="high">High</option>
+        <option value="medium">Medium</option><option value="low">Low</option>
+      </select>
+      <select class="filter-select" id="f-country">
+        <option value="">All countries</option>
+      </select>
+      <select class="filter-select" id="f-date">
+        <option value="">Any time</option>
+        <option value="1h">Last hour</option>
+        <option value="24h">Last 24 hours</option>
+        <option value="7d">Last 7 days</option>
+      </select>
+    </div>
+    <div class="result-list" id="threat-results">
+      <!-- populated by threats.js -->
+    </div>
+    <div class="pagination" id="threat-pagination"></div>
+  </div>
+</div>
+
+<!-- Threat details modal -->
+<div class="modal-overlay" id="threat-modal-overlay">
+  <div class="modal">
+    <div class="modal-head"><h3>Threat Details</h3><button class="icon-btn" id="threat-modal-close">✕</button></div>
+    <div class="modal-body" id="threat-modal-body"></div>
+    <div class="modal-foot"><button class="btn" id="threat-modal-close2">Close</button></div>
+  </div>
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+<script src="js/threats.js"></script>
+<script>
+  SXApp.mount({ title: 'Threat Intelligence', crumbs: 'SENTINEL-X / Threat Intelligence' });
+  SXThreats.init();
+</script>
+</body>
+</html>

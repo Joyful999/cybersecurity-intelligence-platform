@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SENTINEL-X — Security Operations Center</title>
+<meta name="description" content="SENTINEL-X global cybersecurity intelligence platform — real-time threat monitoring, IP intelligence, vulnerability tracking and SOC operations.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><path d=%22M16 2L28 7v8c0 8-5 13-12 15C9 28 4 23 4 15V7L16 2z%22 fill=%22%234f7cff%22/></svg>">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<div id="app-root"></div>
+
+<div id="page-slot" style="display:none">
+  <!-- Status banner -->
+  <div class="status-banner">
+    <div class="sb-main"><span class="pulse-dot"></span> SYSTEM STATUS: OPERATIONAL</div>
+    <div class="sb-items">
+      <div class="sb-item"><span class="sb-ind" id="ind-api"></span>API connectivity: <b id="stat-api">Checking…</b></div>
+      <div class="sb-item"><span class="sb-ind"></span>Threat intel feed: <b>Active</b></div>
+      <div class="sb-item"><span class="sb-ind"></span>Data feed status: <b>Synced</b></div>
+      <div class="sb-item"><span class="sb-ind"></span>Last sync: <b id="stat-sync" class="mono">—</b></div>
+    </div>
+  </div>
+
+  <!-- KPI cards -->
+  <div class="kpi-grid" id="kpi-grid">
+    <!-- populated by dashboard.js -->
+  </div>
+
+  <!-- Map + Activity -->
+  <div class="dash-grid">
+    <div class="panel map-panel">
+      <div class="panel-head">
+        <div>
+          <h3>Global Threat Map</h3>
+          <div class="sub">Live-style geographic distribution of monitored threat events</div>
+        </div>
+        <button class="btn btn-ghost btn-sm" id="map-refresh">Refresh</button>
+      </div>
+      <div class="panel-body">
+        <div id="threat-map">
+          <div class="map-loading-overlay" id="map-loading">
+            <div class="skel" style="width:40px;height:40px;border-radius:50%;"></div>
+            Loading global threat map…
+          </div>
+          <div class="map-legend">
+            <div class="lg-item"><span class="lg-dot" style="background:var(--sev-critical)"></span>Critical</div>
+            <div class="lg-item"><span class="lg-dot" style="background:var(--sev-high)"></span>High</div>
+            <div class="lg-item"><span class="lg-dot" style="background:var(--sev-medium)"></span>Medium</div>
+            <div class="lg-item"><span class="lg-dot" style="background:var(--sev-low)"></span>Low</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel activity-panel">
+      <div class="panel-head">
+        <div>
+          <h3>Live Security Activity</h3>
+          <div class="sub">Demonstration event stream — clearly labeled, not live external attacks</div>
+        </div>
+        <span class="badge badge-neutral">DEMO</span>
+      </div>
+      <div class="panel-body" id="activity-feed">
+        <!-- populated by dashboard.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom row -->
+  <div class="dash-bottom">
+    <div class="panel">
+      <div class="panel-head">
+        <div><h3>Threats Over Time</h3><div class="sub">Rolling 14-day trend, demonstration analytics</div></div>
+        <span class="badge badge-neutral">DEMO</span>
+      </div>
+      <div class="chart-wrap"><canvas id="chart-threats-time"></canvas></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <div><h3>Top Threat Countries</h3><div class="sub">By monitored event volume</div></div>
+      </div>
+      <div class="mini-list" id="top-countries"></div>
+    </div>
+  </div>
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="js/dashboard.js"></script>
+<script>
+  SXApp.mount({ title: 'Security Operations Center', crumbs: 'SENTINEL-X / Dashboard' });
+  SXDashboard.init();
+</script>
+</body>
+</html>

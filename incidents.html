@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Incidents — SENTINEL-X</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><path d=%22M16 2L28 7v8c0 8-5 13-12 15C9 28 4 23 4 15V7L16 2z%22 fill=%22%234f7cff%22/></svg>">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div id="app-root"></div>
+
+<div id="page-slot" style="display:none">
+  <div class="page-head">
+    <div>
+      <h2>Incident Management</h2>
+      <p>Track, triage, and resolve demonstration security incidents</p>
+    </div>
+    <span class="badge badge-neutral">DEMO · Changes persist locally</span>
+  </div>
+
+  <div class="panel">
+    <div class="filter-bar">
+      <div class="input-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input class="input" id="i-query" placeholder="Search incident ID or threat…">
+      </div>
+      <select class="filter-select" id="i-severity">
+        <option value="">All severities</option>
+        <option value="critical">Critical</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option>
+      </select>
+      <select class="filter-select" id="i-status">
+        <option value="">All statuses</option>
+        <option value="New">New</option><option value="Investigating">Investigating</option>
+        <option value="Contained">Contained</option><option value="Resolved">Resolved</option>
+      </select>
+      <select class="filter-select" id="i-sort">
+        <option value="detected-desc">Newest first</option>
+        <option value="detected-asc">Oldest first</option>
+        <option value="severity">By severity</option>
+      </select>
+    </div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr>
+          <th>Incident ID</th><th>Threat</th><th>Severity</th><th>Source</th><th>Detected</th><th>Status</th><th>Assigned</th><th></th>
+        </tr></thead>
+        <tbody id="incidents-body"></tbody>
+      </table>
+    </div>
+    <div class="pagination" id="incidents-pagination"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="inc-modal-overlay">
+  <div class="modal">
+    <div class="modal-head"><h3>Incident Details</h3><button class="icon-btn" id="inc-modal-close">✕</button></div>
+    <div class="modal-body" id="inc-modal-body"></div>
+    <div class="modal-foot"><button class="btn" id="inc-modal-close2">Close</button></div>
+  </div>
+</div>
+
+<script src="js/utils.js"></script>
+<script src="js/api.js"></script>
+<script src="js/app.js"></script>
+<script src="js/incidents.js"></script>
+<script>
+  SXApp.mount({ title: 'Incident Management', crumbs: 'SENTINEL-X / Incidents' });
+  SXIncidents.init();
+</script>
+</body>
+</html>
