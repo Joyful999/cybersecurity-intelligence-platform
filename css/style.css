@@ -228,7 +228,7 @@ img { max-width: 100%; display: block; }
   transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
   position: relative; white-space: nowrap;
 }
-.nav-item svg { flex: 0 0 auto; width: 18px; height: 18px; }
+.nav-item svg { flex: 0 0 auto; width: 15px; height: 15px; }
 .nav-item:hover { background: var(--bg-hover); color: var(--text-primary); }
 .nav-item.active { background: var(--brand-glow); color: var(--brand-400); }
 .nav-item.active::before {
@@ -277,7 +277,7 @@ img { max-width: 100%; display: block; }
   cursor: pointer;
 }
 .topbar-search:hover { border-color: var(--border-strong); }
-.topbar-search svg { width: 15px; height: 15px; flex: 0 0 auto; }
+.topbar-search svg { width: 13px; height: 13px; flex: 0 0 auto; }
 .topbar-search span { font-size: 12.5px; flex: 1; }
 .topbar-search kbd {
   font-family: var(--font-mono); font-size: 10px; background: var(--bg-panel-raised);
@@ -289,13 +289,13 @@ img { max-width: 100%; display: block; }
 .topbar-clock .date { font-size: 10.5px; color: var(--text-tertiary); }
 
 .icon-btn {
-  width: 36px; height: 36px; border-radius: var(--r-md);
+  width: 32px; height: 32px; border-radius: var(--r-md);
   display: flex; align-items: center; justify-content: center;
   background: transparent; border: 1px solid transparent; color: var(--text-secondary);
   position: relative; transition: all var(--t-fast) var(--ease);
 }
 .icon-btn:hover { background: var(--bg-hover); border-color: var(--border-subtle); color: var(--text-primary); }
-.icon-btn svg { width: 18px; height: 18px; }
+.icon-btn svg { width: 15px; height: 15px; }
 .icon-btn .dot {
   position: absolute; top: 6px; right: 6px; width: 7px; height: 7px; border-radius: 50%;
   background: var(--sev-critical); border: 2px solid var(--bg-base);
@@ -493,10 +493,11 @@ table.data-table { width: 100%; border-collapse: collapse; font-size: 12.5px; mi
 .cmdk-overlay.open { display: flex; }
 .cmdk { width: 560px; max-width: calc(100vw - 32px); background: var(--bg-panel-raised); border: 1px solid var(--border-default); border-radius: var(--r-lg); box-shadow: var(--shadow-lg); overflow: hidden; }
 .cmdk-input-row { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 1px solid var(--border-subtle); }
-.cmdk-input-row svg { width: 16px; height: 16px; color: var(--text-tertiary); }
+.cmdk-input-row svg { width: 14px; height: 14px; color: var(--text-tertiary); }
 .cmdk-input-row input { flex: 1; background: transparent; border: none; color: var(--text-primary); font-size: 14px; outline: none; }
 .cmdk-results { max-height: 360px; overflow-y: auto; padding: 8px; }
 .cmdk-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: var(--r-md); font-size: 12.5px; }
+.cmdk-item svg { width: 13px; height: 13px; flex: 0 0 auto; }
 .cmdk-item:hover, .cmdk-item.sel { background: var(--bg-hover); }
 .cmdk-item .k-type { margin-left: auto; font-size: 10px; color: var(--text-tertiary); text-transform: uppercase; }
 .cmdk-empty { padding: 30px; text-align: center; color: var(--text-tertiary); font-size: 12.5px; }

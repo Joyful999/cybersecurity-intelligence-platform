@@ -118,8 +118,8 @@ const SXApp = (() => {
           <span class="dot" id="notif-dot" style="display:none;"></span>
         </button>
         <div class="topbar-profile">
-          <div class="avatar">SA</div>
-          <div class="who"><span class="n">S. Alvarez</span><span class="r">Security Analyst</span></div>
+          <div class="avatar">JL</div>
+          <div class="who"><span class="n">Joyful Lemabari</span><span class="r">Security Analyst</span></div>
         </div>
       </header>
     `;
